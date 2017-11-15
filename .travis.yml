@@ -1,0 +1,36 @@
+sudo:
+    required
+
+language:
+    cpp
+
+os:
+    linux
+
+compiler:
+    "-gcc"
+
+before_install:
+    - wget https://www.libsdl.org/release/SDL2-2.0.5.tar.gz -O SDL2-2.0.5.tar.gz
+    - tar -xzvf SDL2-2.0.5.tar.gz
+
+install:
+    - "(cd SDL2-2.0.5 && ./configure && make && sudo make install)"
+
+script:
+    - mkdir build
+    - cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
+    - cmake --build .
+
+#deploy:
+#    provider:
+#        releases
+#    api_key:
+#        secure: K7G2TkQVAPy8fAeBVTvyj4XxBwGt62j1VxznXNmgXiqj4loGH2v0yjELwuGTwZzpAR8UiDBSjYUW+rk7N15IMBFVPAzXSC6Nd4EGP/8W8XcExITwmunkTejuBCpsB6+zzdZj7P6iDg3XvWc256Zi3/qnCVpeFxkmv48vr+LWwpW13N4Wj5mjqaoXKQNNtBC4fjHLNPfgZWjrb9OqIG9Iw9HBqnnWpJMUF+t3lHBk5kQm4JDd0yB3VMUfpKI4II6G873iDXaq0pAATiUmCJVPqz4nqA5BIuaoo7mwq+Ly564KbFSGPIRxSkujjg2v+MKEsvGZ1phOlu1UJHQsuBJFnA40tY1+2bOH3JvetV+Ao5ZrGY09spwtXitN4o7Uon5fqWMSUEeupevnE2VmKeZuLJzvui/VBaHy7fBMn3RGnAMbo+6+3gMXV9lCsf50uQvl0sc4K4CmCQ3t0TnR/LigD3DTb7AfD8E17MemXaVOR/BsY/S8d8DG4oVZKcYzR1AI8y1KFNRvhSJht7m8Cyqobj9Ts4on+laYzYvYJYuE8jnId9LEpg2OQPcTQ5WYCeY/g3JGj2chAmnE8DhX0IACXSjhbVV12MgPHHZOcoQH35HJx6W1cQbtg80eLiRwOH6/ISQ+xUd82nmpXghdQdIzIyFW2uufgV6HU8Hyur4bkE8=
+#    file:
+#        main
+#    skip_cleanup:
+#        true 
+#    on:
+#        tags: true

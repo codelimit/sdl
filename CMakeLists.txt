@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+
+IF (WIN32)
+    IF (MSVC)
+       set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+       include_directories("C:/mylibs/include")
+       link_directories("C:/mylibs/lib")
+    ELSE()   
+    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive")
+    include_directories("C:/Program Files/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev0/mingw32/include")
+    ENDIF()
+ELSE()
+ENDIF()
+
+add_executable(main main.cpp)
+
+IF (WIN32)
+    IF (MSVC)
+    target_link_libraries(main SDL2main SDL2 SDL2test winmm imm32 version)
+    ELSE ()
+    target_link_libraries(main mingw32 SDL2main SDL2 winmm imm32 version)
+    ENDIF()
+ELSE()
+    target_link_libraries(main SDL2main SDL2)
+ENDIF()
+
