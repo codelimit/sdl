@@ -18,16 +18,7 @@ install:
 
 # Setting directories
   - cmake --version
-  - mkdir %INCLUDEDIR%
-  - mkdir %LIBDIR%
   - mkdir %PKG%
-  - cd %TEMP%
-
-# Install SDL2
-#  - appveyor DownloadFile https://www.libsdl.org/release/SDL2-devel-2.0.7-VC.zip
-#  - 7z x SDL2-devel-2.0.7-VC.zip > nul
-#  - copy SDL2-2.0.7\include\* %INCLUDEDIR% > nul
-#  - copy SDL2-2.0.7\lib\x86\* %LIBDIR% > nul
 
 # Install vcpkg
   - cd C:/pkg
@@ -44,7 +35,8 @@ install:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cmake
-        -DCMAKE_TOOLCHAIN_FILE=C:\pkg\vcpkg-master\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x86-windows-static
+        -DCMAKE_TOOLCHAIN_FILE=C:\pkg\vcpkg-master\scripts\buildsystems\vcpkg.cmake
+        -DVCPKG_TARGET_TRIPLET=x86-windows-static
         -DCMAKE_BUILD_TYPE=Debug
   - cmake --build . --config Debug
 
