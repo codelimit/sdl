@@ -24,10 +24,10 @@ install:
   - cd %TEMP%
 
 # Install SDL2
-  - appveyor DownloadFile https://www.libsdl.org/release/SDL2-devel-2.0.7-VC.zip
-  - 7z x SDL2-devel-2.0.7-VC.zip > nul
-  - copy SDL2-2.0.7\include\* %INCLUDEDIR% > nul
-  - copy SDL2-2.0.7\lib\x86\* %LIBDIR% > nul
+#  - appveyor DownloadFile https://www.libsdl.org/release/SDL2-devel-2.0.7-VC.zip
+#  - 7z x SDL2-devel-2.0.7-VC.zip > nul
+#  - copy SDL2-2.0.7\include\* %INCLUDEDIR% > nul
+#  - copy SDL2-2.0.7\lib\x86\* %LIBDIR% > nul
 
 # Install vcpkg
   - cd C:/pkg
@@ -38,7 +38,8 @@ install:
   - dir
   - bootstrap-vcpkg.bat
   - vcpkg integrate install
-  - vcpkg install sdl2 curl
+  - vcpkg install sdl2:x86-windows-static
+  - cd 
   
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
