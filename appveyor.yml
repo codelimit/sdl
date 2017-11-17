@@ -12,6 +12,7 @@ environment:
   BASEDIR: c:\mylibs
   INCLUDEDIR: c:\mylibs\include\SDL2
   LIBDIR: c:\mylibs\lib
+  PKG: c:\pkg
 
 install:
 
@@ -19,6 +20,7 @@ install:
   - cmake --version
   - mkdir %INCLUDEDIR%
   - mkdir %LIBDIR%
+  - mkdir %PKG%
   - cd %TEMP%
 
 # Install SDL2
@@ -27,7 +29,15 @@ install:
   - copy SDL2-2.0.7\include\* %INCLUDEDIR% > nul
   - copy SDL2-2.0.7\lib\x86\* %LIBDIR% > nul
 
-
+# Install vcpkg
+  - cd C:/pkg
+  - appveyor DownloadFile https://github.com/Microsoft/vcpkg/archive/master.zip
+  - 7z x vcpkg-master.zip > nul
+  - cd vcpkg-master
+  - bootstrap-vcpkg.bat
+  - vcpkg integrate install
+  - vcpkg install sdl2 curl
+  
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - echo %BASEDIR%
