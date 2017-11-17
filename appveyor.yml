@@ -44,7 +44,7 @@ install:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cmake
-        -DCMAKE_TOOLCHAIN_FILE=.../vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x86-windows-static
+        -DCMAKE_TOOLCHAIN_FILE=C:\pkg\vcpkg-master\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x86-windows-static
         -DCMAKE_BUILD_TYPE=Debug
   - cmake --build . --config Debug
 
