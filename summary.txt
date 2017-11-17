@@ -1,0 +1,19 @@
+SUMMARY:
+
+MINGW x64 static build:
+    - 8.004 kb
+    - works on Win7 x64, Win7 x86, WinXP x86
+
+MINGW x64 dynamic build:
+    - 2.215 kb
+    - requires libSDL2.dll, libgcc_s_dw2-1.dll, libwinpthread-1.dll
+    - works on Win7 x64, Win7 x86, WinXP x86
+
+MSVC x86 static build:
+    - 2.172 kb
+    - works on Win7 x64/x86
+
+MSVC x86 dynamic build:
+    - 1.333 kb
+    - requires SDL2.dll
+    - works on Win7 x64/x86
