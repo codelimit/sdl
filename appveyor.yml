@@ -31,7 +31,8 @@ install:
 
 # Install vcpkg
   - cd C:/pkg
-  - appveyor DownloadFile https://github.com/Microsoft/vcpkg/archive/master.zip
+  - appveyor DownloadFile https://www.github.com/Microsoft/vcpkg/archive/master.zip
+  - dir
   - 7z x vcpkg-master.zip > nul
   - cd vcpkg-master
   - bootstrap-vcpkg.bat
