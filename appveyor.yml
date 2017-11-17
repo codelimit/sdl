@@ -43,10 +43,9 @@ install:
   
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - echo %BASEDIR%
-  - echo %APPVEYOR_BUILD_FOLDER%
   - cmake
-        -DCMAKE_PREFIX_PATH=%BASEDIR%
+        -DCMAKE_TOOLCHAIN_FILE=.../vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x86-windows-static
+#        -DCMAKE_PREFIX_PATH=%BASEDIR%
         -DCMAKE_BUILD_TYPE=Debug
   - cmake --build . --config Debug
 
